@@ -1,5 +1,56 @@
 ﻿@page "/new-entry"
-
+<PageTitle>New Entry</PageTitle>
 <h3>NewEntry</h3>
 
 
+<MudGrid>
+	<MudItem xs="12" sm="6">
+		<MudPaper Class="pa-6" Height="500px">
+			<MudForm @ref="_form" IsValid="@_success" Class="h-100">
+				<MudStack Spacing="3" Class="h-100" >
+					<MudDatePicker Label="Zahldatum" @bind-Date="_dateOfPayment" />
+					<MudRadioGroup T="string" @bind-Value="_selectedOption"
+								   Required
+								   RequiredError="Preis oder Kilometer muss ausgewählt sein für einen Eintrag">
+						<MudRadio Value="@("Preis")">Preis</MudRadio>
+						<MudRadio Value="@("Kilometer")">Kilometer</MudRadio>
+					</MudRadioGroup>
+					<MudSelect T="string"
+							   Variant="Variant.Outlined"
+							   Label="Kategorie"
+							   Margin="Margin.Normal"
+							   Dense
+							   FitContent
+							   Clearable
+							   Modal
+							   ValueChanged="SelectedCategoryChanged"
+							   Validation="(string c) => ValidateCategory(c)"
+							   Immediate
+							   FullWidth
+							   Style="min-height:80px">
+						@foreach (var state in _statesOfCategories)
+						{
+							<MudSelectItem T="string" Value="state">@state</MudSelectItem>
+						}
+					</MudSelect>
+					<MudNumericField Disabled="_selectedOption is null"
+									 @bind-Value="_priceOrKilometer"
+									 Label="@_selectedOption"
+									 Variant="Variant.Text"
+									 Validation="(double p) => ValidatePrice(p)"
+									 Min="0.0"/>
+					<MudSpacer />
+					<MudStack Row Justify="Justify.FlexEnd">
+						<MudButton FullWidth="false"
+								   Variant="Variant.Filled"
+								   Color="Color.Primary"
+								   Disabled="@(!_success)"
+								   OnClick="AddNewEntryButtonClick">
+							Eintragen
+						</MudButton>
+					</MudStack>
+				</MudStack>
+			</MudForm>
+		</MudPaper>
+	</MudItem>
+</MudGrid>

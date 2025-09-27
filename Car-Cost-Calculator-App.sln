@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Car-Cost-Calculator-App.Cient", "Car-Cost-Calculator-App\Car-Cost-Calculator-App.Cient.csproj", "{2B2A5CDF-6048-4959-98CD-A2AD69174259}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Car-Cost-Calculator-App.Client", "Car-Cost-Calculator-App\Car-Cost-Calculator-App.Client.csproj", "{2B2A5CDF-6048-4959-98CD-A2AD69174259}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarCostCalculator-App.EF", "CarCostCalculator-App.EF\CarCostCalculator-App.EF.csproj", "{73E972E6-EB7C-483F-94AA-C393BBE34398}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Car-Cost-Calculator-App.API", "Car-Cost-Calculator-App.API\Car-Cost-Calculator-App.API.csproj", "{BD4E857B-0C16-455D-ADE8-DB7E78BFE66A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Car-Cost-Calculator-App.Contracts", "Car-Cost-Calculator-App.Contracts\Car-Cost-Calculator-App.Contracts.csproj", "{E5FC881F-BE85-48AD-95D2-A7EDF527EA16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +21,23 @@ Global
 		{2B2A5CDF-6048-4959-98CD-A2AD69174259}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B2A5CDF-6048-4959-98CD-A2AD69174259}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B2A5CDF-6048-4959-98CD-A2AD69174259}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73E972E6-EB7C-483F-94AA-C393BBE34398}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73E972E6-EB7C-483F-94AA-C393BBE34398}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73E972E6-EB7C-483F-94AA-C393BBE34398}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73E972E6-EB7C-483F-94AA-C393BBE34398}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD4E857B-0C16-455D-ADE8-DB7E78BFE66A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD4E857B-0C16-455D-ADE8-DB7E78BFE66A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD4E857B-0C16-455D-ADE8-DB7E78BFE66A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD4E857B-0C16-455D-ADE8-DB7E78BFE66A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5FC881F-BE85-48AD-95D2-A7EDF527EA16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5FC881F-BE85-48AD-95D2-A7EDF527EA16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5FC881F-BE85-48AD-95D2-A7EDF527EA16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5FC881F-BE85-48AD-95D2-A7EDF527EA16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {65D1A680-6D05-4295-91C6-A2E043FD24A3}
 	EndGlobalSection
 EndGlobal
