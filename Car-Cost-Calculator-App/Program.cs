@@ -1,5 +1,9 @@
 using Car_Cost_Calculator_App.Components;
+using Car_Cost_Calculator_App.Shared;
+using CarCostCalculator_App.EF;
+using Microsoft.EntityFrameworkCore;
 using MudBlazor.Services;
+using OfficeOpenXml;
 
 namespace Car_Cost_Calculator_App
 {
@@ -7,12 +11,21 @@ namespace Car_Cost_Calculator_App
     {
         public static void Main(string[] args)
         {
+            ExcelPackage.License.SetNonCommercialPersonal("Personal");
+
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents();
             builder.Services.AddMudServices();
+            builder.Services.AddMudBlazorDialog();
+
+            builder.Services.AddSingleton<AppThemes>();
+
+            var conntectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+            builder.Services.AddDbContext<CarCostCalculatorContext>(options =>
+                options.UseSqlServer(conntectionString));
 
             var app = builder.Build();
 
