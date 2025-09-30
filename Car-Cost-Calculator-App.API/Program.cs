@@ -1,3 +1,5 @@
+using CarCostCalculator_App.Data.Repository.Extensions;
+using CarCostCalculator_App.Domain.Logic;
 using CarCostCalculator_App.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -27,10 +29,17 @@ namespace Car_Cost_Calculator_App.API
                 }
             });
 
+
+
             builder.Services.AddDbContext<CarCostCalculatorContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             builder.Services.AddSingleton(_ => AutoMapperConfiguration.Configure().CreateMapper());
+
+            builder.Services.AddRepositories();
+            builder.Services
+                .AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CategoryQueryHandler).Assembly))
+                ;
 
             builder.Services.AddEndpointsApiExplorer();
 

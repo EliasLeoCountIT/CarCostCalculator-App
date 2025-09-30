@@ -7,7 +7,7 @@ namespace CarCostCalculator_App.EF.Entities
     public class KilometerEntry
     {
         public int Id { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime PaymentDate { get; set; }
         public double Kilometers { get; set; }
 
         [ForeignKey(nameof(MonthlyDataId))]

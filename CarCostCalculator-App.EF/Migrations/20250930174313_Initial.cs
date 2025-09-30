@@ -63,7 +63,7 @@ namespace CarCostCalculator_App.EF.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PaymentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Price = table.Column<double>(type: "float", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     MonthlyDataId = table.Column<int>(type: "int", nullable: false)
@@ -91,7 +91,7 @@ namespace CarCostCalculator_App.EF.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PaymentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Kilometers = table.Column<double>(type: "float", nullable: false),
                     MonthlyDataId = table.Column<int>(type: "int", nullable: false)
                 },

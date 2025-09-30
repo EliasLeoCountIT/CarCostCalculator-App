@@ -4,19 +4,22 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>Car-Cost-Calculator-App.API</RootNamespace>
+    <RootNamespace>Car-Cost-Calculator-App.Web.API</RootNamespace>
     <AssemblyName>$(AssemblyName.Replace(' ', '_'))</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="MediatR" Version="13.0.0" />
 	<PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
 	<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="9.0.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\CarCostCalculator-App.EF\CarCostCalculator-App.EF.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\CarCostCalculator-App.Domain.Logic\CarCostCalculator-App.Domain.Logic.csproj" />
+		<ProjectReference Include="..\CarCostCalculator-App.EF\CarCostCalculator-App.Data.EF.csproj" />
+		<ProjectReference Include="..\CarCostCalculator-App.Data.Repository\CarCostCalculator-App.Data.Repository.csproj" />
+	</ItemGroup>
 
   <ItemGroup>
     <Folder Include="wwwroot\" />

@@ -7,7 +7,7 @@ namespace CarCostCalculator_App.EF.Entities
     public class CostEntry
     {
         public int Id { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime PaymentDate { get; set; }
         public double Price { get; set; }
 
         [ForeignKey(nameof(CategoryId))]

@@ -1,4 +1,4 @@
-﻿namespace CarCostCalculator_App.EF.Enums
+﻿namespace CarCostCalculator_App.Domain.Model.Enums
 {
     public enum Month
     {

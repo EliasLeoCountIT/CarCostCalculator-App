@@ -3,13 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Car-Cost-Calculator-App.Client", "Car-Cost-Calculator-App\Car-Cost-Calculator-App.Client.csproj", "{2B2A5CDF-6048-4959-98CD-A2AD69174259}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Car-Cost-Calculator-App.Web.App", "Car-Cost-Calculator-App\Car-Cost-Calculator-App.Web.App.csproj", "{2B2A5CDF-6048-4959-98CD-A2AD69174259}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarCostCalculator-App.EF", "CarCostCalculator-App.EF\CarCostCalculator-App.EF.csproj", "{73E972E6-EB7C-483F-94AA-C393BBE34398}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarCostCalculator-App.Data.EF", "CarCostCalculator-App.EF\CarCostCalculator-App.Data.EF.csproj", "{73E972E6-EB7C-483F-94AA-C393BBE34398}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Car-Cost-Calculator-App.API", "Car-Cost-Calculator-App.API\Car-Cost-Calculator-App.API.csproj", "{BD4E857B-0C16-455D-ADE8-DB7E78BFE66A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Car-Cost-Calculator-App.Web.API", "Car-Cost-Calculator-App.API\Car-Cost-Calculator-App.Web.API.csproj", "{BD4E857B-0C16-455D-ADE8-DB7E78BFE66A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Car-Cost-Calculator-App.Contracts", "Car-Cost-Calculator-App.Contracts\Car-Cost-Calculator-App.Contracts.csproj", "{E5FC881F-BE85-48AD-95D2-A7EDF527EA16}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarCostCalculator-App.Domain.Logic", "CarCostCalculator-App.Domain.Logic\CarCostCalculator-App.Domain.Logic.csproj", "{45670C2B-83AD-4F92-A195-884042A61B16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarCostCalculator-App.Domain.Model", "CarCostCalculator-App.Domain.Model\CarCostCalculator-App.Domain.Model.csproj", "{C907E302-7E0F-4A2A-82FC-78BF95CC6E4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarCostCalculator-App.Domain.Contract", "CarCostCalculator-App.Domain.Contract\CarCostCalculator-App.Domain.Contract.csproj", "{DD3E7346-8C5E-43BA-B025-4B1F06680287}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarCostCalculator-App.Data.Contract", "CarCostCalculator-App.Data.Contract\CarCostCalculator-App.Data.Contract.csproj", "{6E3403F6-BF9D-48F9-96FB-653B05E2E864}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarCostCalculator-App.Data.Repository", "CarCostCalculator-App.Data.Repository\CarCostCalculator-App.Data.Repository.csproj", "{6CDA5C52-6701-4447-B02B-5EB99A35BA07}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +37,26 @@ Global
 		{BD4E857B-0C16-455D-ADE8-DB7E78BFE66A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD4E857B-0C16-455D-ADE8-DB7E78BFE66A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD4E857B-0C16-455D-ADE8-DB7E78BFE66A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E5FC881F-BE85-48AD-95D2-A7EDF527EA16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E5FC881F-BE85-48AD-95D2-A7EDF527EA16}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E5FC881F-BE85-48AD-95D2-A7EDF527EA16}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E5FC881F-BE85-48AD-95D2-A7EDF527EA16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45670C2B-83AD-4F92-A195-884042A61B16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45670C2B-83AD-4F92-A195-884042A61B16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45670C2B-83AD-4F92-A195-884042A61B16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45670C2B-83AD-4F92-A195-884042A61B16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C907E302-7E0F-4A2A-82FC-78BF95CC6E4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C907E302-7E0F-4A2A-82FC-78BF95CC6E4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C907E302-7E0F-4A2A-82FC-78BF95CC6E4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C907E302-7E0F-4A2A-82FC-78BF95CC6E4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD3E7346-8C5E-43BA-B025-4B1F06680287}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD3E7346-8C5E-43BA-B025-4B1F06680287}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD3E7346-8C5E-43BA-B025-4B1F06680287}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD3E7346-8C5E-43BA-B025-4B1F06680287}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E3403F6-BF9D-48F9-96FB-653B05E2E864}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E3403F6-BF9D-48F9-96FB-653B05E2E864}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E3403F6-BF9D-48F9-96FB-653B05E2E864}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E3403F6-BF9D-48F9-96FB-653B05E2E864}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CDA5C52-6701-4447-B02B-5EB99A35BA07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CDA5C52-6701-4447-B02B-5EB99A35BA07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CDA5C52-6701-4447-B02B-5EB99A35BA07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CDA5C52-6701-4447-B02B-5EB99A35BA07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

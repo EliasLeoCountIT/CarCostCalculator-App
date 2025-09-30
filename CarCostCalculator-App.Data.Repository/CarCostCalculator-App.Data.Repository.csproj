@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <RootNamespace>CarCostCalculator_App.Data.Repository</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CarCostCalculator-App.Data.Contract\CarCostCalculator-App.Data.Contract.csproj" />
+    <ProjectReference Include="..\CarCostCalculator-App.EF\CarCostCalculator-App.Data.EF.csproj" />
+  </ItemGroup>
+
+</Project>
