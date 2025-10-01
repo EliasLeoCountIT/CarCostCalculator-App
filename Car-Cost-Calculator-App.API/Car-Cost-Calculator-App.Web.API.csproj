@@ -16,6 +16,7 @@
   </ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\CarCostCalculator-App.CCL\CarCostCalculator-App.CCL.csproj" />
 		<ProjectReference Include="..\CarCostCalculator-App.Domain.Logic\CarCostCalculator-App.Domain.Logic.csproj" />
 		<ProjectReference Include="..\CarCostCalculator-App.EF\CarCostCalculator-App.Data.EF.csproj" />
 		<ProjectReference Include="..\CarCostCalculator-App.Data.Repository\CarCostCalculator-App.Data.Repository.csproj" />

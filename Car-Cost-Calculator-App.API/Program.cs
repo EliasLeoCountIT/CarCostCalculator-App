@@ -1,4 +1,6 @@
+using CarCostCalculator_App.CCL.CQRS.AspNetCore;
 using CarCostCalculator_App.Data.Repository.Extensions;
+using CarCostCalculator_App.Domain.Contract.Category;
 using CarCostCalculator_App.Domain.Logic;
 using CarCostCalculator_App.EF;
 using Microsoft.EntityFrameworkCore;
@@ -39,7 +41,9 @@ namespace Car_Cost_Calculator_App.API
             builder.Services.AddRepositories();
             builder.Services
                 .AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CategoryQueryHandler).Assembly))
+                .AddCommandQueryEndpoints(cfg => cfg.RegisterContractsFromAssembly(typeof(CategoryByPrimaryKey).Assembly))
                 ;
+            ;
 
             builder.Services.AddEndpointsApiExplorer();
 
@@ -85,6 +89,8 @@ namespace Car_Cost_Calculator_App.API
                 _ = app.UseDeveloperExceptionPage();
                 _ = app.UseMigrationsEndPoint();
             }
+
+
 
             app.UseHttpsRedirection();
 

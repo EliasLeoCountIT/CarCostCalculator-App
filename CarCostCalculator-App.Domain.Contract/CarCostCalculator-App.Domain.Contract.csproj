@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CarCostCalculator-App.CCL\CarCostCalculator-App.CCL.csproj" />
     <ProjectReference Include="..\CarCostCalculator-App.Domain.Model\CarCostCalculator-App.Domain.Model.csproj" />
   </ItemGroup>
 

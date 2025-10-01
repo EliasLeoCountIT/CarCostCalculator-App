@@ -1,5 +1,5 @@
 ﻿using CarCostCalculator_App.Data.Contract;
-using CarCostCalculator_App.Domain.Contract;
+using CarCostCalculator_App.Domain.Contract.Category;
 using CarCostCalculator_App.Domain.Model;
 using MediatR;
 
