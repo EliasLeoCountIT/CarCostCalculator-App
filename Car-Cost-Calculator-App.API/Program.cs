@@ -1,4 +1,8 @@
+using CarCostCalculator_App.CCL.AspNetCore;
+using CarCostCalculator_App.CCL.AspNetCore.Tracking;
+using CarCostCalculator_App.CCL.CQRS;
 using CarCostCalculator_App.CCL.CQRS.AspNetCore;
+using CarCostCalculator_App.CCL.CQRS.EntityFrameworkCore;
 using CarCostCalculator_App.Data.Repository.Extensions;
 using CarCostCalculator_App.Domain.Contract.Category;
 using CarCostCalculator_App.Domain.Logic;
@@ -41,11 +45,19 @@ namespace Car_Cost_Calculator_App.API
             builder.Services.AddRepositories();
             builder.Services
                 .AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CategoryQueryHandler).Assembly))
+                .AddRequestContext()
                 .AddCommandQueryEndpoints(cfg => cfg.RegisterContractsFromAssembly(typeof(CategoryByPrimaryKey).Assembly))
+                .AddODataEndpoints()
+                .AddAsyncBehavior()
                 ;
             ;
 
-            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddEndpointsApiExplorer()
+                            .AddSwaggerGen(c =>
+                            {
+                                c.UseAllOfForInheritance();
+                                c.OperationFilter<AddDataOriginHeaderAsSwaggerParameter>("x-data-origin");
+                            });
 
             builder.Services.AddSwaggerGen(c =>
             {
@@ -90,7 +102,18 @@ namespace Car_Cost_Calculator_App.API
                 _ = app.UseMigrationsEndPoint();
             }
 
+            app.UseHttpsRedirection();
 
+            app.UseDeveloperExceptionPage();
+
+            app.UseCors(builder =>
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader());
+
+
+
+            app.MapCommandQueryEndpoints();
 
             app.UseHttpsRedirection();
 

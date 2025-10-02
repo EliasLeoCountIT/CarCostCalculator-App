@@ -1,4 +1,4 @@
-namespace Car_Cost_Calculator_App.Components.Pages
+namespace Pages
 {
     public partial class ManageCar
     {

@@ -1,6 +1,11 @@
+using CarCostCalculator_App.CCL.CQRS.HTTP.Client.MediatR;
+using CarCostCalculator_App.Domain.Contract.Category;
+using CarCostCalculator_App.Domain.Model;
+using MediatR;
+using Microsoft.AspNetCore.Components;
 using MudBlazor;
 
-namespace Car_Cost_Calculator_App.Components.Pages
+namespace Car_Cost_Calculator_App.Pages
 {
     public partial class NewEntry
     {
@@ -11,11 +16,10 @@ namespace Car_Cost_Calculator_App.Components.Pages
         private string _selectedOption = "Preis";
         private double _priceOrKilometer;
 
-        private readonly string[] _statesOfCategories =
-        {
-            "Kfz-Versicherung", "Zulassung", "Pickerl", "Service", "ÖAMTC",
-            "Tanken", "Vignette", "Sonstiges"
-        };
+        private List<Category>? _statesOfCategories;
+
+        [Inject]
+        public required ISender Sender { get; set; }
         private async Task AddNewEntryButtonClick()
         {
             await _form!.Validate();
@@ -25,6 +29,14 @@ namespace Car_Cost_Calculator_App.Components.Pages
                 return;
             }
 
+        }
+        protected override async Task OnInitializedAsync()
+        {
+            await base.OnInitializedAsync();
+
+            var result = await Sender.SendOData(new CategoriesViaOData { Top = int.MaxValue });
+
+            _statesOfCategories = [.. result.Items];
         }
         private string? ValidateCategory(string? c)
         {
@@ -41,5 +53,6 @@ namespace Car_Cost_Calculator_App.Components.Pages
             _value = value;
             StateHasChanged();
         }
+
     }
 }

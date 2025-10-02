@@ -1,5 +1,11 @@
-using Car_Cost_Calculator_App.Components;
+using Car_Cost_Calculator_App.API;
 using Car_Cost_Calculator_App.Shared;
+using CarCostCalculator_App.CCL.Components.WebAssembly;
+using CarCostCalculator_App.CCL.CQRS.HTTP.Client;
+using CarCostCalculator_App.Data.Contract;
+using CarCostCalculator_App.Data.Repository;
+using CarCostCalculator_App.Domain.Contract.Category;
+using CarCostCalculator_App.Domain.Logic;
 using CarCostCalculator_App.EF;
 using Microsoft.EntityFrameworkCore;
 using MudBlazor.Services;
@@ -20,7 +26,22 @@ namespace Car_Cost_Calculator_App
             builder.Services.AddMudServices();
             builder.Services.AddMudBlazorDialog();
 
+            // add repos
+            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+
+            builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
+
+            builder.Services
+                .AddRemoteProblemExceptionBehavior()
+                .AddCommandQueryClient(cfg => cfg.RegisterContractsFromAssembly(typeof(CategoryByPrimaryKey).Assembly))
+                .AddHttpClient(cfg =>
+                {
+                    cfg.BaseAddress = new Uri(builder.Configuration["ApiBaseAddress"] ?? throw new InvalidOperationException("ApiBaseAddress is not configured."));
+                });
+            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CategoryQueryHandler).Assembly));
+
             builder.Services.AddSingleton<AppThemes>();
+
 
             var conntectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 

@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="EPPlus" Version="8.0.7" />
+    <PackageReference Include="MediatR" Version="13.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -18,11 +19,20 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="MudBlazor" Version="8.10.0" />
+    <PackageReference Include="MudBlazor" Version="8.13.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Car-Cost-Calculator-App.API\Car-Cost-Calculator-App.Web.API.csproj" />
+    <ProjectReference Include="..\CarCostCalculator-App.CCL\CarCostCalculator-App.CCL.csproj" />
+    <ProjectReference Include="..\CarCostCalculator-App.Data.Repository\CarCostCalculator-App.Data.Repository.csproj" />
+    <ProjectReference Include="..\CarCostCalculator-App.Domain.Contract\CarCostCalculator-App.Domain.Contract.csproj" />
+    <ProjectReference Include="..\CarCostCalculator-App.Domain.Logic\CarCostCalculator-App.Domain.Logic.csproj" />
     <ProjectReference Include="..\CarCostCalculator-App.EF\CarCostCalculator-App.Data.EF.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Components\Layout\" />
   </ItemGroup>
 
 </Project>

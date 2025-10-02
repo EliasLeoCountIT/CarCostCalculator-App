@@ -28,9 +28,9 @@
 							   Immediate
 							   FullWidth
 							   Style="min-height:80px">
-						@foreach (var state in _statesOfCategories)
+						@foreach (var state in _statesOfCategories!)
 						{
-							<MudSelectItem T="string" Value="state">@state</MudSelectItem>
+							<MudSelectItem T="string" Value="state.Name">@state</MudSelectItem>
 						}
 					</MudSelect>
 					<MudNumericField Disabled="_selectedOption is null"
@@ -54,3 +54,6 @@
 		</MudPaper>
 	</MudItem>
 </MudGrid>
+
+
+									 

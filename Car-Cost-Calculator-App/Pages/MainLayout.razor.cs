@@ -1,6 +1,6 @@
 using Car_Cost_Calculator_App.Shared;
 
-namespace Car_Cost_Calculator_App.Components.Layout
+namespace Car_Cost_Calculator_App.Pages
 {
     public partial class MainLayout
     {
