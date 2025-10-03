@@ -8,6 +8,7 @@ namespace CarCostCalculator_App.Data.Repository.Extensions
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IKilometerEntryRepository, KilometerEntryRepository>();
 
             return services;
         }

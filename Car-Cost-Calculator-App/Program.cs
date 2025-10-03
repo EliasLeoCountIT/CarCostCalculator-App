@@ -1,6 +1,5 @@
 using Car_Cost_Calculator_App.API;
 using Car_Cost_Calculator_App.Shared;
-using CarCostCalculator_App.CCL.Components.WebAssembly;
 using CarCostCalculator_App.CCL.CQRS.HTTP.Client;
 using CarCostCalculator_App.Data.Contract;
 using CarCostCalculator_App.Data.Repository;
@@ -31,8 +30,8 @@ namespace Car_Cost_Calculator_App
 
             builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
 
+
             builder.Services
-                .AddRemoteProblemExceptionBehavior()
                 .AddCommandQueryClient(cfg => cfg.RegisterContractsFromAssembly(typeof(CategoryByPrimaryKey).Assembly))
                 .AddHttpClient(cfg =>
                 {

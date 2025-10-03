@@ -9,17 +9,25 @@ namespace Car_Cost_Calculator_App.Pages
 {
     public partial class NewEntry
     {
-        private string? _value;
-        private bool _success => !string.IsNullOrWhiteSpace(_value) && _selectedOption != null;
         private MudForm? _form;
-        private DateTime? _dateOfPayment = DateTime.Today;
-        private string _selectedOption = "Preis";
-        private double _priceOrKilometer;
-
         private List<Category>? _statesOfCategories;
+
+        private DateTime? _dateOfPayment;
+        private string _selectedOption = null!;
+        private string? _selectedCategory;
+        private double _valueToAdd;
+
+        private bool _success => !string.IsNullOrWhiteSpace(_selectedCategory) && _selectedOption != null;
+        private bool _isLoading = true;
+
+
 
         [Inject]
         public required ISender Sender { get; set; }
+
+        [Inject]
+        public required ISnackbar Snackbar { get; set; }
+
         private async Task AddNewEntryButtonClick()
         {
             await _form!.Validate();
@@ -29,14 +37,35 @@ namespace Car_Cost_Calculator_App.Pages
                 return;
             }
 
+            try
+            {
+
+            }
+            catch (Exception e)
+            {
+                Snackbar.Add($"Hinzufügen fehlgeschlagen: {e.Message}", Severity.Error);
+            }
+
+        }
+
+        private void LoadFormValues()
+        {
+            _valueToAdd = 0.0;
+            _dateOfPayment = DateTime.Today;
+            _selectedOption = "Preis";
         }
         protected override async Task OnInitializedAsync()
         {
+            _isLoading = true;
             await base.OnInitializedAsync();
 
             var result = await Sender.SendOData(new CategoriesViaOData { Top = int.MaxValue });
 
             _statesOfCategories = [.. result.Items];
+            LoadFormValues();
+
+            _isLoading = false;
+            StateHasChanged();
         }
         private string? ValidateCategory(string? c)
         {
@@ -50,7 +79,7 @@ namespace Car_Cost_Calculator_App.Pages
 
         private void SelectedCategoryChanged(string value)
         {
-            _value = value;
+            _selectedCategory = value;
             StateHasChanged();
         }
 
