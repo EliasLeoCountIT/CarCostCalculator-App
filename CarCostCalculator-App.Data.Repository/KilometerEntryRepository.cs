@@ -4,12 +4,10 @@ using CarCostCalculator_App.Domain.Model;
 using CarCostCalculator_App.EF;
 using CarCostCalculator_App.EF.Entities;
 using Microsoft.EntityFrameworkCore;
-using DTO = CarCostCalculator_App.Domain.Model;
-using Entities = CarCostCalculator_App.EF.Entities;
 
 namespace CarCostCalculator_App.Data.Repository
 {
-    public class KilometerEntryRepository(CarCostCalculatorContext context, IMapper mapper) : BaseRepository<Entities.KilometerEntry, DTO.KilometerEntryCore>(context, mapper), IKilometerEntryRepository
+    public class KilometerEntryRepository(CarCostCalculatorContext context, IMapper mapper) : BaseRepository<KilometerEntry, KilometerEntryCore>(context, mapper), IKilometerEntryRepository
     {
         public async Task<KilometerEntryCore?> Create(KilometerEntryCore kilometerEntry, CancellationToken cancellationToken)
         {
@@ -25,7 +23,7 @@ namespace CarCostCalculator_App.Data.Repository
             // 1. AnnualData suchen oder anlegen
             var annualData = await Context.AnnualDatas
                   .Include(a => a.MonthlyData)
-                  .FirstOrDefaultAsync(a => a.Year == year);
+                  .FirstOrDefaultAsync(a => a.Year == year, cancellationToken);
 
             if (annualData == null)
             {
@@ -45,7 +43,7 @@ namespace CarCostCalculator_App.Data.Repository
             }
 
             kilometerEntry.MonthlyDataId = monthlyData.Id;
-            var entity = Mapper.Map<Entities.KilometerEntry>(kilometerEntry);
+            var entity = Mapper.Map<KilometerEntry>(kilometerEntry);
 
             if (await Context.KilometerEntries.AnyAsync(k => k.Id == entity.Id, cancellationToken))
             {
