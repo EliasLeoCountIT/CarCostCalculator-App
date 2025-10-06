@@ -1,6 +1,6 @@
 ﻿namespace CarCostCalculator_App.Domain.Model
 {
-    public class CostEntry
+    public class CostEntryCore
     {
         public int Id { get; set; }
         public DateTime PaymentDate { get; set; }

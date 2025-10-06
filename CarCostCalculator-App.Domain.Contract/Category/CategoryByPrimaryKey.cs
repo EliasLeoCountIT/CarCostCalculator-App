@@ -5,4 +5,4 @@ using DTO = CarCostCalculator_App.Domain.Model;
 namespace CarCostCalculator_App.Domain.Contract.Category;
 
 [Metadata(nameof(Category))]
-public record CategoryByPrimaryKey(int Id) : IQuery<DTO.Category?>;
+public record CategoryByPrimaryKey(int Id) : IQuery<DTO.CategoryCore?>;

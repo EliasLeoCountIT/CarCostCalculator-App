@@ -5,6 +5,6 @@ using DTO = CarCostCalculator_App.Domain.Model;
 namespace CarCostCalculator_App.Domain.Contract.KilometerEntry
 {
     [Metadata(nameof(KilometerEntry))]
-    public record AddKilometerEntry(DTO.KilometerEntry KilometerEntry) : ICommand<DTO.KilometerEntry?>;
+    public record AddKilometerEntry(DTO.KilometerEntryCore KilometerEntry) : ICommand<DTO.KilometerEntryCore?>;
 
 }

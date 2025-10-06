@@ -2,8 +2,8 @@
 
 namespace CarCostCalculator_App.Data.Contract
 {
-    public interface ICategoryRepository : IQueryableRepository<Category>
+    public interface ICategoryRepository : IQueryableRepository<CategoryCore>
     {
-        Task<Category?> LoadByPrimaryKey(int id, CancellationToken cancellationToken = default);
+        Task<CategoryCore?> LoadByPrimaryKey(int id, CancellationToken cancellationToken = default);
     }
 }

@@ -1,5 +1,6 @@
 using CarCostCalculator_App.CCL.CQRS.HTTP.Client.MediatR;
 using CarCostCalculator_App.Domain.Contract.Category;
+using CarCostCalculator_App.Domain.Contract.KilometerEntry;
 using CarCostCalculator_App.Domain.Model;
 using MediatR;
 using Microsoft.AspNetCore.Components;
@@ -10,7 +11,7 @@ namespace Car_Cost_Calculator_App.Pages
     public partial class NewEntry
     {
         private MudForm? _form;
-        private List<Category>? _statesOfCategories;
+        private List<CategoryCore>? _statesOfCategories;
 
         private DateTime? _dateOfPayment;
         private string _selectedOption = null!;
@@ -39,7 +40,14 @@ namespace Car_Cost_Calculator_App.Pages
 
             try
             {
+                var entry = new KilometerEntryCore
+                {
+                    Kilometers = _valueToAdd,
+                    PaymentDate = _dateOfPayment!.Value,
+                };
 
+                await Sender.Send(new AddKilometerEntry(entry));
+                Snackbar.Add($"Eintrag wurde erfolgreich hinzugefügt.", Severity.Success);
             }
             catch (Exception e)
             {

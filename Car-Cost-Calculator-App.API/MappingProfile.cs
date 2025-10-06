@@ -8,21 +8,21 @@ namespace Car_Cost_Calculator_App.API
     {
         public MappingProfile()
         {
-            CreateMap<AnnualData, DTO.AnnualData>()
+            CreateMap<AnnualData, DTO.AnnualDataCore>()
                 .ForMember(dest => dest.TotalKilometers, opt => opt.MapFrom(src => src.MonthlyData.SelectMany(m => m.KilometerEntries).Sum(k => k.Kilometers)))
                 .ForMember(dest => dest.TotalCost, opt => opt.MapFrom(src => src.MonthlyData.SelectMany(m => m.CostEntries).Sum(c => c.Price)))
                 .ReverseMap();
 
-            CreateMap<Category, DTO.Category>()
+            CreateMap<Category, DTO.CategoryCore>()
                .ReverseMap();
 
-            CreateMap<CostEntry, DTO.CostEntry>()
+            CreateMap<CostEntry, DTO.CostEntryCore>()
                 .ReverseMap();
 
-            CreateMap<KilometerEntry, DTO.KilometerEntry>()
+            CreateMap<KilometerEntry, DTO.KilometerEntryCore>()
                 .ReverseMap();
 
-            CreateMap<MonthlyData, DTO.MonthlyData>()
+            CreateMap<MonthlyData, DTO.MonthlyDataCore>()
                 .ForMember(dest => dest.TotalKilometers, opt => opt.MapFrom(src => src.KilometerEntries.Sum(k => k.Kilometers)))
                 .ForMember(dest => dest.TotalCost, opt => opt.MapFrom(src => src.CostEntries.Sum(c => c.Price)))
                 .ReverseMap();

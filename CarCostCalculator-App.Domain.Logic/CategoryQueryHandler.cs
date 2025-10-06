@@ -9,15 +9,15 @@ using System.Linq.Expressions;
 namespace CarCostCalculator_App.Domain.Logic;
 
 public class CategoryQueryHandler(ICategoryRepository repository)
-    : ODataBaseHandler<CategoriesViaOData, Category>,
-      IRequestHandler<CategoryByPrimaryKey, Category?>
+    : ODataBaseHandler<CategoriesViaOData, CategoryCore>,
+      IRequestHandler<CategoryByPrimaryKey, CategoryCore?>
 {
     ICategoryRepository _repository = repository;
 
-    public async Task<Category?> Handle(CategoryByPrimaryKey request, CancellationToken cancellationToken)
+    public async Task<CategoryCore?> Handle(CategoryByPrimaryKey request, CancellationToken cancellationToken)
         => await _repository.LoadByPrimaryKey(request.Id, cancellationToken);
 
-    protected override IQueryable<Category> RetrieveQueryable(CategoriesViaOData request)
+    protected override IQueryable<CategoryCore> RetrieveQueryable(CategoriesViaOData request)
     {
         var query = _repository.QueryProjection();
 
@@ -26,7 +26,7 @@ public class CategoryQueryHandler(ICategoryRepository repository)
             return query;
         }
 
-        var properties = new List<Expression<Func<Category, string?>>>
+        var properties = new List<Expression<Func<CategoryCore, string?>>>
         {
             c => c.Name
         };

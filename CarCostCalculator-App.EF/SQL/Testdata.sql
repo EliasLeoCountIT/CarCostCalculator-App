@@ -1,4 +1,14 @@
-﻿
+﻿PRINT N'Deleting existing data from CostEntries table...';
+DELETE FROM [CarCostCalculator].[dbo].[CostEntries]
+
+PRINT N'Deleting existing data from KilometerEntries table...';
+DELETE FROM [CarCostCalculator].[dbo].[KilometerEntries]
+
+PRINT N'Deleting existing data from MonthlyDatas table...';
+DELETE FROM [CarCostCalculator].[dbo].[MonthlyDatas]
+
+PRINT N'Deleting existing data from AnnualDatas table...';
+DELETE FROM [CarCostCalculator].[dbo].[AnnualDatas]
 
 PRINT N'Deleting existing data from Categories table...';
 DELETE FROM [CarCostCalculator].[dbo].[Categories]
