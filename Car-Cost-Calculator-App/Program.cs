@@ -4,7 +4,7 @@ using CarCostCalculator_App.CCL.CQRS.HTTP.Client;
 using CarCostCalculator_App.Data.Contract;
 using CarCostCalculator_App.Data.Repository;
 using CarCostCalculator_App.Domain.Contract.Category;
-using CarCostCalculator_App.Domain.Logic;
+using CarCostCalculator_App.Domain.Logic.Category;
 using CarCostCalculator_App.EF;
 using Microsoft.EntityFrameworkCore;
 using MudBlazor.Services;

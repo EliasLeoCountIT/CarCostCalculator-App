@@ -3,7 +3,6 @@
 
 @if (_isLoading)
 {
-	<MudText>Loading Kategorien...</MudText>
 	<MudProgressCircular Indeterminate="true" Color="Color.Primary" Size="Size.Large" />
 }
 else
@@ -34,7 +33,7 @@ else
 								   Immediate
 								   FullWidth
 								   Style="min-height:80px">
-							@foreach (var state in _statesOfCategories!)
+							@foreach (var state in _allCategories!)
 							{
 								<MudSelectItem T="string" Value="state.Name">@state.Name</MudSelectItem>
 							}

@@ -5,7 +5,7 @@ using CarCostCalculator_App.CCL.CQRS.AspNetCore;
 using CarCostCalculator_App.CCL.CQRS.EntityFrameworkCore;
 using CarCostCalculator_App.Data.Repository.Extensions;
 using CarCostCalculator_App.Domain.Contract.Category;
-using CarCostCalculator_App.Domain.Logic;
+using CarCostCalculator_App.Domain.Logic.Category;
 using CarCostCalculator_App.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;

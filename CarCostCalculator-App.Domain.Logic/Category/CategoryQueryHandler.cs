@@ -6,7 +6,7 @@ using CarCostCalculator_App.Domain.Model;
 using MediatR;
 using System.Linq.Expressions;
 
-namespace CarCostCalculator_App.Domain.Logic;
+namespace CarCostCalculator_App.Domain.Logic.Category;
 
 public class CategoryQueryHandler(ICategoryRepository repository)
     : ODataBaseHandler<CategoriesViaOData, CategoryCore>,

@@ -11,7 +11,7 @@ namespace Car_Cost_Calculator_App.Pages
     public partial class NewEntry
     {
         private MudForm? _form;
-        private List<CategoryCore>? _statesOfCategories;
+        private List<CategoryCore>? _allCategories;
 
         private DateTime? _dateOfPayment;
         private string _selectedOption = null!;
@@ -69,7 +69,7 @@ namespace Car_Cost_Calculator_App.Pages
 
             var result = await Sender.SendOData(new CategoriesViaOData { Top = int.MaxValue });
 
-            _statesOfCategories = [.. result.Items];
+            _allCategories = [.. result.Items];
             LoadFormValues();
 
             _isLoading = false;

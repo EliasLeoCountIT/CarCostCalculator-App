@@ -3,3 +3,26 @@
 <PageTitle>Add New Category</PageTitle>
 
 
+<MudDataGrid T="CategoryCore" FilterCaseSensitivity="DataGridFilterCaseSensitivity.CaseInsensitive"
+			 MultiSelection="false" Items="@_allCategories" Hover SortMode="SortMode.Multiple" Filterable QuickFilter="@QuickFilter">
+	<ToolBarContent>
+		<MudText Typo="Typo.h6">Kategorien</MudText>
+		<MudSpacer />
+		<MudTextField @bind-Value="_searchString" Placeholder="Suchen" Adornment="Adornment.Start" Immediate
+					  AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+	</ToolBarContent>
+	<Columns>
+		<PropertyColumn Property="x => x.Name" Title="Name" HeaderStyle="color: var(--mud-palette-primary);"/>
+		<TemplateColumn CellClass="d-flex justify-end">
+				<CellTemplate>
+					<MudTooltip Text="Bearbeiten">
+						<MudIconButton Size="@Size.Small" Icon="@Icons.Material.Filled.Edit" Color="Color.Secondary" OnClick="UpdateCategory" />
+					</MudTooltip>
+					<MudTooltip Text="Löschen">
+						<MudIconButton Size="@Size.Small" Icon="@Icons.Material.Filled.Delete" Color="Color.Tertiary" OnClick="@(() => DeleteCategory(context.Item.Id))" />
+					</MudTooltip>
+				</CellTemplate>
+		</TemplateColumn>
+
+	</Columns>
+</MudDataGrid>
