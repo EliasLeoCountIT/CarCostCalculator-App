@@ -3,7 +3,7 @@ using CarCostCalculator_App.Domain.Contract.KilometerEntry;
 using CarCostCalculator_App.Domain.Model;
 using MediatR;
 
-namespace CarCostCalculator_App.Domain.Logic
+namespace CarCostCalculator_App.Domain.Logic.KilometerEntry
 {
     public class KilometerEntryQueryHandler(IKilometerEntryRepository repository)
     : IRequestHandler<KilometerEntryByPrimaryKey, KilometerEntryCore?>

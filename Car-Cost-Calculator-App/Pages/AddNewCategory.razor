@@ -2,27 +2,59 @@
 
 <PageTitle>Add New Category</PageTitle>
 
+<MudStack Spacing="3">
+	<MudDataGrid T="CategoryCore"
+				 @ref="_grid"
+				 FilterCaseSensitivity="DataGridFilterCaseSensitivity.CaseInsensitive"
+				 MultiSelection="false" Items="@_allCategories"
+				 Hover
+				 SortMode="SortMode.Multiple"
+				 Filterable
+				 Loading="_isLoading"
+				 QuickFilter="@QuickFilter">
+		<ToolBarContent>
+			<MudStack Row Spacing="5" Justify="Justify.SpaceBetween" Style="width: 100%">
+				<MudText Typo="Typo.h6">Kategorien</MudText>
+				<MudTextField @bind-Value="_searchString" Placeholder="Suchen" Adornment="Adornment.Start" Immediate
+							  AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+				<MudSpacer />
+				<MudTooltip Text="Kategorie hinzufügen">
+					<MudIconButton OnClick="AddCategory"
+								   Variant="Variant.Text"
+								   Icon="@Icons.Material.Filled.Add"
+								   Color="Color.Primary" />
 
-<MudDataGrid T="CategoryCore" FilterCaseSensitivity="DataGridFilterCaseSensitivity.CaseInsensitive"
-			 MultiSelection="false" Items="@_allCategories" Hover SortMode="SortMode.Multiple" Filterable QuickFilter="@QuickFilter">
-	<ToolBarContent>
-		<MudText Typo="Typo.h6">Kategorien</MudText>
-		<MudSpacer />
-		<MudTextField @bind-Value="_searchString" Placeholder="Suchen" Adornment="Adornment.Start" Immediate
-					  AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
-	</ToolBarContent>
-	<Columns>
-		<PropertyColumn Property="x => x.Name" Title="Name" HeaderStyle="color: var(--mud-palette-primary);"/>
-		<TemplateColumn CellClass="d-flex justify-end">
+				</MudTooltip>
+			</MudStack>
+		</ToolBarContent>
+		<Columns>
+			<PropertyColumn Property="x => x.Name" Title="Name" HeaderStyle="color: var(--mud-palette-primary);" />
+			<TemplateColumn>
 				<CellTemplate>
-					<MudTooltip Text="Bearbeiten">
-						<MudIconButton Size="@Size.Small" Icon="@Icons.Material.Filled.Edit" Color="Color.Secondary" OnClick="UpdateCategory" />
-					</MudTooltip>
-					<MudTooltip Text="Löschen">
-						<MudIconButton Size="@Size.Small" Icon="@Icons.Material.Filled.Delete" Color="Color.Tertiary" OnClick="@(() => DeleteCategory(context.Item.Id))" />
-					</MudTooltip>
+					<MudStack Row Justify="Justify.FlexEnd" Spacing="2">
+						<MudTooltip Text="Bearbeiten">
+							<MudIconButton Size="@Size.Small"
+										   Icon="@Icons.Material.Filled.Edit"
+										   Color="Color.Secondary"
+										   OnClick="@(() => EditCategory(context.Item))"
+										   Style="padding: 0; min-width: auto;" />
+						</MudTooltip>
+						<MudTooltip Text="Löschen">
+							<MudIconButton Size="@Size.Small"
+										   Icon="@Icons.Material.Filled.Delete"
+										   Color="Color.Tertiary"
+										   OnClick="@(() => DeleteCategory(context.Item.Id))"
+										   Style="padding: 0; min-width: auto;" />
+						</MudTooltip>
+					</MudStack>
 				</CellTemplate>
-		</TemplateColumn>
+			</TemplateColumn>
+		</Columns>
+	</MudDataGrid>
+	@if (!_isLoading)
+	{
+		<MudStack AlignItems="AlignItems.Center">
 
-	</Columns>
-</MudDataGrid>
+		</MudStack>
+	}
+</MudStack>

@@ -1,0 +1,22 @@
+﻿@inject IDialogService DialogService
+
+<MudDialog>
+	<DialogContent>
+		<div style="min-width:300px; min-height:100px">
+			<MudTextField T="string"
+						  @bind-Value="Category.Name"
+						  Label="Kategorie"
+						  Variant="Variant.Text"
+						  MaxLength="100"
+						  Immediate
+						  Required
+						  RequiredError="Erforderlich" />
+		</div>
+	</DialogContent>
+	<DialogActions>
+		<MudButton Variant="Variant.Outlined" OnClick="Cancel">Abbrechen</MudButton>
+		<MudButton Variant="Variant.Filled" Disabled="@(string.IsNullOrWhiteSpace(Category.Name))" Color="Color.Primary" OnClick="OnValidSubmit">Speichern</MudButton>
+	</DialogActions>
+</MudDialog>
+
+

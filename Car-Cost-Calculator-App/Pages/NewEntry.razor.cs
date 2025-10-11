@@ -10,16 +10,20 @@ namespace Car_Cost_Calculator_App.Pages
 {
     public partial class NewEntry
     {
+        private const string _placeHolderValue = "-";
+
         private MudForm? _form;
+        private MudSelect<string>? _categorySelect;
         private List<CategoryCore>? _allCategories;
 
         private DateTime? _dateOfPayment;
-        private string _selectedOption = null!;
+        private string _selectedRadioBtn = null!;
         private string? _selectedCategory;
         private double _valueToAdd;
 
-        private bool _success => !string.IsNullOrWhiteSpace(_selectedCategory) && _selectedOption != null;
-        private bool _isLoading = true;
+
+        private bool Success => !string.IsNullOrWhiteSpace(_selectedCategory) && _selectedRadioBtn != null;
+        private bool IsLoading = true;
 
 
 
@@ -40,13 +44,28 @@ namespace Car_Cost_Calculator_App.Pages
 
             try
             {
-                var entry = new KilometerEntryCore
+                if (_selectedRadioBtn == "Preis")
                 {
-                    Kilometers = _valueToAdd,
-                    PaymentDate = _dateOfPayment!.Value,
-                };
+                    var category = _allCategories!.FirstOrDefault(c => c.Name == _selectedCategory);
 
-                await Sender.Send(new AddKilometerEntry(entry));
+                    var entry = new CostEntryCore
+                    {
+                        CategoryId = category!.Id,
+                        Price = _valueToAdd,
+                        PaymentDate = _dateOfPayment!.Value,
+                    };
+                }
+                else
+                {
+                    var entry = new KilometerEntryCore
+                    {
+                        Kilometers = _valueToAdd,
+                        PaymentDate = _dateOfPayment!.Value,
+                    };
+
+                    await Sender.Send(new AddKilometerEntry(entry));
+                }
+
                 Snackbar.Add($"Eintrag wurde erfolgreich hinzugefügt.", Severity.Success);
             }
             catch (Exception e)
@@ -56,15 +75,37 @@ namespace Car_Cost_Calculator_App.Pages
 
         }
 
+        private void SelectedRadioBtnChanged(string value)
+        {
+            if (value == "Kilometer")
+            {
+                _selectedCategory = _placeHolderValue;
+                InvokeAsync(async () =>
+                {
+                    StateHasChanged();
+                    await Task.Delay(1);
+                    _categorySelect?.Validate();
+                });
+            }
+            else
+            {
+                _selectedCategory = null;
+                StateHasChanged();
+            }
+
+            _selectedRadioBtn = value;
+        }
+
         private void LoadFormValues()
         {
             _valueToAdd = 0.0;
             _dateOfPayment = DateTime.Today;
-            _selectedOption = "Preis";
+            _selectedRadioBtn = "Preis";
+            _selectedCategory = null;
         }
         protected override async Task OnInitializedAsync()
         {
-            _isLoading = true;
+            IsLoading = true;
             await base.OnInitializedAsync();
 
             var result = await Sender.SendOData(new CategoriesViaOData { Top = int.MaxValue });
@@ -72,7 +113,7 @@ namespace Car_Cost_Calculator_App.Pages
             _allCategories = [.. result.Items];
             LoadFormValues();
 
-            _isLoading = false;
+            IsLoading = false;
             StateHasChanged();
         }
         private string? ValidateCategory(string? c)

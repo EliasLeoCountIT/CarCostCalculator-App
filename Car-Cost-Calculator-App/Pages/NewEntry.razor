@@ -1,7 +1,7 @@
 ﻿@page "/new-entry"
 <PageTitle>New CostEntry</PageTitle>
 
-@if (_isLoading)
+@if (IsLoading)
 {
 	<MudProgressCircular Indeterminate="true" Color="Color.Primary" Size="Size.Large" />
 }
@@ -11,37 +11,40 @@ else
 		<MudItem xs="12" sm="6">
 			<MudPaper Class="pa-6">
 				<MudText Typo="Typo.h4" Class="mb-5 me-auto">Neuer Eintrag</MudText>
-				<MudForm @ref="_form" IsValid="@_success" Class="h-100">
+				<MudForm @ref="_form" IsValid="@Success" Class="h-100">
 					<MudStack Spacing="3" Class="h-100">
 						<MudDatePicker Label="Zahldatum" @bind-Date="_dateOfPayment" Clearable />
-						<MudRadioGroup T="string" @bind-Value="_selectedOption"
+						<MudRadioGroup T="string" Value="_selectedRadioBtn" ValueChanged="@((string value) => SelectedRadioBtnChanged(value))"
 									   Required
 									   RequiredError="Preis oder Kilometer muss ausgewählt sein für einen Eintrag">
 							<MudRadio Value="@("Preis")">Preis</MudRadio>
 							<MudRadio Value="@("Kilometer")">Kilometer</MudRadio>
 						</MudRadioGroup>
 						<MudSelect T="string"
+								   @ref="_categorySelect"
 								   Variant="Variant.Outlined"
 								   Label="Kategorie"
 								   Margin="Margin.Normal"
 								   Dense
+								   Value="_selectedCategory"
 								   FitContent
 								   Clearable
 								   Modal
+								   Disabled="@(_selectedCategory == _placeHolderValue)"
 								   ValueChanged="SelectedCategoryChanged"
 								   Validation="(string c) => ValidateCategory(c)"
 								   Immediate
 								   FullWidth
 								   Style="min-height:80px">
-							@foreach (var state in _allCategories!)
+							@foreach (var category in _allCategories!)
 							{
-								<MudSelectItem T="string" Value="state.Name">@state.Name</MudSelectItem>
+								<MudSelectItem T="string" Value="category.Name">@category.Name</MudSelectItem>
 							}
 
 						</MudSelect>
-						<MudNumericField Disabled="_selectedOption is null"
+						<MudNumericField Disabled="_selectedRadioBtn is null"
 										 @bind-Value="_valueToAdd"
-										 Label="@_selectedOption"
+										 Label="@_selectedRadioBtn"
 										 Variant="Variant.Text"
 										 Validation="(double p) => ValidatePrice(p)"
 										 Min="0.0" />
@@ -57,7 +60,7 @@ else
 									   Variant="Variant.Filled"
 									   StartIcon="@Icons.Material.Filled.Save"
 									   Color="Color.Primary"
-									   Disabled="@(!_success)"
+									   Disabled="@(!Success)"
 									   OnClick="AddNewEntryButtonClick">
 								Erstellen
 							</MudButton>

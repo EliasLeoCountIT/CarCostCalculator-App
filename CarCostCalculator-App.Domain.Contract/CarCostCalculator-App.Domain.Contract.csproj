@@ -16,8 +16,4 @@
     <ProjectReference Include="..\CarCostCalculator-App.Domain.Model\CarCostCalculator-App.Domain.Model.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="CostEntry\" />
-  </ItemGroup>
-
 </Project>

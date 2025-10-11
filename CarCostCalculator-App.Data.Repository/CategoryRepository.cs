@@ -18,6 +18,11 @@ namespace CarCostCalculator_App.Data.Repository
 
             var entity = Mapper.Map<Category>(category);
 
+            if (await Context.Categories.AnyAsync(c => c.Name.Equals(entity.Name), cancellationToken))
+            {
+                throw new Exception($"Eine Kategorie mit dem Namen '{entity.Name}' existiert bereits.");
+            }
+
             if (await Context.Categories.AnyAsync(c => c.Id == entity.Id, cancellationToken))
             {
                 return await LoadByPrimaryKey(entity.Id, cancellationToken);
